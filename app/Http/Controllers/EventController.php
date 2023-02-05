@@ -17,7 +17,7 @@ class EventController extends Controller
         $eventArray = [];
         foreach($events as $event){
             if($event->status == 'En attente' ){
-                $backgroundColor = '#aa72c1';
+                $backgroundColor = '#3dc6ab';
             }elseif($event->status == 'Encoure'){
                 $backgroundColor = '#3dc6ab';
             }else{
@@ -35,5 +35,20 @@ class EventController extends Controller
         }
 
         return response()->json($eventArray);
+    }
+
+    public function store(Request $request){
+        $event = Event::create([
+            'title' => $request->title,
+            'start' => $request->start,
+            'description' => $request->description,
+            'user_id' => auth()->user()->id,
+        ]);
+        if($event){
+            session()->flash('success','Notification a été ajouté avec succée');
+            return to_route('dashboard');
+        }
+            session()->flash('fail','Notification a été pas ajouté');
+            return to_route('dashboard');
     }
 }

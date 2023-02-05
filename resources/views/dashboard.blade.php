@@ -30,6 +30,28 @@
 
 
 @section('after-scripts')
+    @if (Session::has('success'))
+        <script>
+            toastr.success("{{ Session::get('success') }}");
+            toastr.options = {
+                "closeButton": false,
+                "debug": false,
+                "newestOnTop": true,
+                "progressBar": true,
+                "positionClass": "toast-top-right",
+                "preventDuplicates": false,
+                "onclick": null,
+                "showDuration": "300",
+                "hideDuration": "1000",
+                "timeOut": "5000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            }
+        </script>
+    @endif
     <script src="{{ asset('fullcalendar/fullcalendarglobal.js') }}"></script>
     {{-- <script defer src="{{ asset('fullcalendar/core/index.global.min.js') }}"></script>
     <script defer src="{{ asset('fullcalendar/core/locales-all.global.min.js') }}"></script>
@@ -44,15 +66,14 @@
             const calendar = new FullCalendar.Calendar(calendarEl, {
                 locale: 'fr', // change calendare to fr lang
                 initialView: 'dayGridMonth',
-                // titleFormat: {
-                //     year: 'numeric',
-                //     month: 'short',
-                //     day: 'numeric'
-                // }, // like 'September 8 2009', for day views
                 headerToolbar: {
                     left: 'prev,next today',
                     center: 'title',
                     right: 'dayGridYear,dayGridMonth,dayGridDay,list'
+                },
+                visibleRange: {
+                    start: '2020-03-22',
+                    end: '2020-03-25'
                 },
                 dayMaxEvents: 3, // for all non-TimeGrid views
                 buttonText: {

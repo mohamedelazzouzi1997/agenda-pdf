@@ -16,11 +16,13 @@
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <link rel="stylesheet" href="{{ asset('assets/plugins/bootstrap/css/bootstrap.min.css') }}">
+
     @if (trim($__env->yieldContent('page-style')))
         @yield('page-style')
     @endif
     <!-- Custom Css -->
     <link rel="stylesheet" href="{{ asset('assets/css/style.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('toaster/toaster.css') }}">
     @yield('after-styles')
     @livewireStyles
 </head>
@@ -89,12 +91,14 @@ if (Request::segment(2) === 'rtl') {
         </div>
     </section>
     @yield('modal')
+    @include('modals.addNotification')
     <!-- Scripts -->
     @yield('before-scripts')
     <script src="{{ asset('js/jquery-3.6.3.js') }}"></script>
     <script src="{{ asset('assets/bundles/libscripts.bundle.js') }}"></script>
     <script src="{{ asset('assets/bundles/vendorscripts.bundle.js') }}"></script>
     <script src="{{ asset('assets/bundles/mainscripts.bundle.js') }}"></script>
+    <script src="{{ asset('toaster/toaster.js') }}"></script>
     @yield('after-scripts')
     @if (trim($__env->yieldContent('page-script')))
         @yield('page-script')
