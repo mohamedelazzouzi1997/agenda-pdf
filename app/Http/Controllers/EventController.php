@@ -10,26 +10,26 @@ class EventController extends Controller
     //
     public function index(){
         //
-        return $this->eventToArray(Event::all());
+        return $this->eventToArray(Event::with('user')->where('user_id',auth()->user()->id)->get());
     }
 
     public function eventToArray($events){
         $eventArray = [];
         foreach($events as $event){
             if($event->status == 'En attente' ){
-                $backgroundColor = '#3dc6ab';
-            }elseif($event->status == 'Encoure'){
-                $backgroundColor = '#3dc6ab';
+                $backgroundColor = 'bg-enatend';
+            }elseif($event->status == 'Rejete'){
+                $backgroundColor = 'bg-rejete';
             }else{
-                $backgroundColor = '#ff2b2b';
+                $backgroundColor = 'bg-valide';
             }
             $data = [
                 'id' => $event->id,
                 'title' => $event->title,
                 'start' => $event->start,
-                'end' => $event->end,
+                'status' => $event->status,
                 'description' => $event->description,
-                'backgroundColor' => $backgroundColor,
+                'classNames' =>  $backgroundColor,
             ];
             array_push($eventArray,$data);
         }
@@ -46,6 +46,20 @@ class EventController extends Controller
         ]);
         if($event){
             session()->flash('success','Notification a été ajouté avec succée');
+            return to_route('dashboard');
+        }
+            session()->flash('fail','Notification a été pas ajouté');
+            return to_route('dashboard');
+    }
+
+    public function update(Request $request, $id){
+        $event = Event::findOrFail($id);
+        $event->update([
+            'title' => $request->title,
+            'description' => $request->description,
+        ]);
+        if($event){
+            session()->flash('success','Notification a été modifie avec succée');
             return to_route('dashboard');
         }
             session()->flash('fail','Notification a été pas ajouté');

@@ -92,6 +92,7 @@ if (Request::segment(2) === 'rtl') {
     </section>
     @yield('modal')
     @include('modals.addNotification')
+
     <!-- Scripts -->
     @yield('before-scripts')
     <script src="{{ asset('js/jquery-3.6.3.js') }}"></script>
@@ -100,9 +101,6 @@ if (Request::segment(2) === 'rtl') {
     <script src="{{ asset('assets/bundles/mainscripts.bundle.js') }}"></script>
     <script src="{{ asset('toaster/toaster.js') }}"></script>
     @yield('after-scripts')
-    @if (trim($__env->yieldContent('page-script')))
-        @yield('page-script')
-    @endif
     @livewireScripts
 </body>
 

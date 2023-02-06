@@ -22,4 +22,5 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified'])-
     Route::get('/dashboard', function () {return view('dashboard');})->name('dashboard');
     Route::get('/getEvents',[EventController::class,'index'])->name('events');
     Route::post('/event/store',[EventController::class,'store'])->name('store.event');
+    Route::put('/event/update/{id}',[EventController::class,'update'])->name('update.event');
 });

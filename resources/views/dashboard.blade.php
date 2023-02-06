@@ -13,9 +13,28 @@
 
         .fc .fc-toolbar h2 {
             font-size: 35px !important;
-
         }
-
+        .fc-event-time{
+            font-weight: bolder !important;
+            font-size: 15px !important;
+        }
+        .tooltip{
+            padding: 0 !important;
+        }
+        .tooltip-inner
+        {
+            border-radius: 5px !important;
+            background-color: #88e6be !important;
+        }
+        .bg-enatend{
+            background-color: #f5b400 !important;
+        }
+        .bg-valide{
+            background-color: #27e988 !important;
+        }
+        .bg-rejete{
+            background-color: #ff2b2b !important;
+        }
         .fc-daygrid-more-link {
             color: green !important;
         }
@@ -53,6 +72,11 @@
         </script>
     @endif
     <script src="{{ asset('fullcalendar/fullcalendarglobal.js') }}"></script>
+    {{-- <script src="{{ asset('popper/main.js') }}"></script> --}}
+    {{-- <script src="https://unpkg.com/popper.js/dist/umd/popper.min.js"></script> --}}
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script> --}}
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.3/js/mdb.min.js"></script> --}}
+    {{-- <script src="{{ asset('tooltips/main.js') }}"></script> --}}
     {{-- <script defer src="{{ asset('fullcalendar/core/index.global.min.js') }}"></script>
     <script defer src="{{ asset('fullcalendar/core/locales-all.global.min.js') }}"></script>
     <script defer src="{{ asset('fullcalendar/bootstrap5/index.global.min.js') }}"></script>
@@ -69,11 +93,7 @@
                 headerToolbar: {
                     left: 'prev,next today',
                     center: 'title',
-                    right: 'dayGridYear,dayGridMonth,dayGridDay,list'
-                },
-                visibleRange: {
-                    start: '2020-03-22',
-                    end: '2020-03-25'
+                    right: 'dayGridMonth,dayGridWeek,dayGridDay,list'
                 },
                 dayMaxEvents: 3, // for all non-TimeGrid views
                 buttonText: {
@@ -83,11 +103,57 @@
                     day: 'Jour',
                     list: 'list'
                 },
+                eventTextColor:'black',
                 navLinks: true,
-                editable: true,
+                // editable: true,
                 selectable: true,
                 initialDate: Date.now(),
-                events: '/getEvents'
+                eventDidMount: function(info) {
+                    $(info.el).tooltip({
+                        title: info.event.extendedProps.description,
+                        placement: "top",
+                        trigger: "hover",
+                        container: "body"
+                    });
+                },
+                events: '/getEvents',
+                eventClick: function(info){
+                    // alert(info.event.classNames);
+                    var currentDate = info.event.start;
+                    var month = currentDate.getMonth() +1;
+                    if (month < 10) month = "0" + month;
+                    var dateOfMonth = currentDate.getDate();
+                    if (dateOfMonth < 10) dateOfMonth = "0" + dateOfMonth;
+                    var year = currentDate.getFullYear();
+                    var hour = currentDate.getHours();
+                    if (hour < 10) hour = "0" + hour;
+
+                    var minute = currentDate.getMinutes();
+                    if (minute < 10) minute = "0" + minute;
+
+                    var formattedDate = year + "/" + month + "/" + dateOfMonth +' ' + hour +':'+minute;
+
+                    const title = info.event.title;
+                    const statusBgColor = info.event.classNames;
+                    const description = info.event.extendedProps.description;
+                    const start = formattedDate;
+                    const status = info.event.extendedProps.status;
+                    const eventId = info.event.id;
+
+                    $('#editEventTile').val(title);
+                    $('#editeventDate').html(start);
+                    $('#eventstatus').html(status);
+                    $('#eventstatus').addClass(statusBgColor);
+                    $('#editEventDescription').val(description);
+                    $('#editNotification').modal();
+
+                    $('#editmyform').attr('action', '/event/update/'+ eventId);
+
+                },
+                select: function(selectionInfo){
+                    $('#eventDate').val(selectionInfo.startStr +'T00:00');
+                    $('#addNotification').modal();
+                }
             });
             calendar.render();
         });
@@ -95,4 +161,8 @@
     <script>
         $('.fc-button-group').addClass('shadow-lg')
     </script>
+@endsection
+
+@section('modal')
+    @include('modals.editNotification')
 @endsection
