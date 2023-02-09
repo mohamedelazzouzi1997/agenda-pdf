@@ -1,11 +1,11 @@
 @extends('layouts.app')
 
 @section('title')
-    EVENTS
+    ADMIN EVENTS
 @endsection
 
 @section('after-styles')
-    <link rel="stylesheet" href="{{ asset('css/clientCss.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/adminCss.css') }}">
 @endsection
 
 @section('content')
@@ -31,9 +31,9 @@
         </script>
     @endif
     <script src="{{ asset('fullcalendar/fullcalendarglobal.js') }}"></script>
-    <script src="{{ asset('js/clientJs.js') }}"></script>
+    <script src="{{ asset('js/adminJs.js') }}"></script>
 @endsection
 
 @section('modal')
-    @include('modals.editNotification')
+    @include('modals.admin.editNotification')
 @endsection

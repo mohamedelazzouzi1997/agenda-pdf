@@ -2,9 +2,9 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header py-3 px-5 uppercase bg-teal-500 shadow-lg shadow-cyan-500/50">
-                <h4 class="title text-center font-extrabold" id="addNotification">Nouvelle Notificaton </h4>
+                <h4 class="title text-center font-extrabold" id="addNotification">ajoute Nouvelle Notificaton </h4>
             </div>
-            <form id="myform" action="{{ route('store.event') }}" method="post" class="form-group px-4 py-3">
+            <form id="myform" action="{{ route('admin.store.event') }}" method="post" class="form-group px-4 py-3">
                 @csrf
                 <div class="input-group masked-input mb-3">
                     <div class="input-group-prepend shadow-md">

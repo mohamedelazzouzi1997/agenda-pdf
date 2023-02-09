@@ -18,7 +18,14 @@ class Event extends Model
         'status',
         'user_id',
     ];
-
+    // public static function search($search)
+    // {
+    //     return empty($search) ? static::query()
+    //         : static::where('title', 'like', '%'.$search.'%')
+    //             ->orWhere('description', 'like', '%'.$search.'%')
+    //             ->orWhere('date', 'like', '%'.$search.'%')
+    //             ->orWhere('status', 'like', '%'.$search.'%');
+    // }
     public function user()
     {
         return $this->belongsTo(User::class);

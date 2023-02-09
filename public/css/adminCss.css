@@ -1,0 +1,58 @@
+        .fc .fc-toolbar .fc-button {
+            background-color: #1a252f !important;
+        }
+        
+        .fc-button-group,
+        .fc-today-button {
+            filter: drop-shadow(2px 3px 3px #000);
+        }
+        
+        .fc .fc-toolbar h2 {
+            font-size: 35px !important;
+        }
+        
+        .fc-event-time {
+            font-weight: bolder !important;
+            font-size: 15px !important;
+        }
+        
+        .tooltip {
+            padding: 0 !important;
+        }
+        
+        .tooltip-inner {
+            border-radius: 5px !important;
+            background-color: #88e6be !important;
+        }
+        
+        .bg-enatend {
+            background-color: #f5b400 !important;
+        }
+        
+        .bg-valide {
+            background-color: #27e988 !important;
+        }
+        
+        .bg-rejete {
+            background-color: #ff2b2b !important;
+        }
+        
+        .fc-daygrid-more-link {
+            color: green !important;
+        }
+        
+        .fc-event:hover {
+            background-color: #212c2b !important;
+        }
+        
+        .fc-list-view .fc-event:hover {
+            color: #000 !important;
+        }
+        
+        .btn-simple {
+            display: none !important;
+        }
+        
+        .fc-toolbar-title {
+            text-transform: capitalize !important;
+        }

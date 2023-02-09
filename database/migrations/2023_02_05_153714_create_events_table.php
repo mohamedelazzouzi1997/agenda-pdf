@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string('title')->nullable();
             $table->string('description')->nullable();
             $table->dateTime('start')->nullable();
-            $table->dateTime('end')->nullable();
             $table->string('status')->default('En attente');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
