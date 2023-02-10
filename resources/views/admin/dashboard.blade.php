@@ -16,7 +16,8 @@
 
 
 @section('after-scripts')
-    <script></script>
+    <script src="{{ asset('fullcalendar/fullcalendarglobal.js') }}"></script>
+    <script src="{{ asset('js/adminJs.js') }}"></script>
     @if (Session::has('success'))
         <script>
             toastr.success("{{ Session::get('success') }}");
@@ -30,8 +31,6 @@
             toastr.options = ToasterOptions;
         </script>
     @endif
-    <script src="{{ asset('fullcalendar/fullcalendarglobal.js') }}"></script>
-    <script src="{{ asset('js/adminJs.js') }}"></script>
 @endsection
 
 @section('modal')
