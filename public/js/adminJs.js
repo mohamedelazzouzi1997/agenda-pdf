@@ -21,11 +21,19 @@
             const calendar = new FullCalendar.Calendar(calendarEl, {
                 locale: 'fr', // change calendare to fr lang
                 initialView: 'dayGridMonth',
+                businessHours: {
+                    // days of week. an array of zero-based day of week integers (0=Sunday)
+                    daysOfWeek: [1, 2, 3, 4, 5], // Monday - Thursday
+
+                    startTime: '10:00', // a start time (10am in this example)
+                    endTime: '18:00', // an end time (6pm in this example)
+                },
                 headerToolbar: {
                     left: 'prev,next today',
                     center: 'title',
                     right: 'dayGridYear,dayGridMonth,dayGridWeek,dayGridDay,list'
                 },
+                businessHours: true,
                 dayMaxEvents: 3, // for all non-TimeGrid views
                 buttonText: {
                     today: "Aujourd'hui",
@@ -90,6 +98,7 @@
                     $('#editNotification').modal();
 
                     $('#editmyform').attr('action', '/admin/event/update/' + eventId);
+                    $('#deleteOneEventForm').attr('action', '/admin/event/delete/' + eventId);
 
                 },
                 select: function(selectionInfo) {
@@ -144,4 +153,21 @@
             $('.bootstrap-select').removeClass('form-control');
             $('.bootstrap-select').removeClass('btn-group');
             $('.bootstrap-select').removeClass('bootstrap-select');
+
+            $('#deleteOneEventButton').confirm({
+                title: 'Confirm pour Supprimé',
+                content: 'Confirm pour Suprimé cette event',
+                type: 'red',
+                typeAnimated: true,
+                buttons: {
+                    tryAgain: {
+                        text: 'DELETE',
+                        btnClass: 'btn-red',
+                        action: function() {
+                            $('#deleteOneEventForm').submit();
+                        }
+                    },
+                    close: function() {}
+                }
+            });
         });

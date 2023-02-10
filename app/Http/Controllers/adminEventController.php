@@ -88,11 +88,28 @@ class adminEventController extends Controller
 
         return view('admin.eventValide',compact('EVENT_VALIDES'));
     }
+    public function delete($id){
+        $event = Event::findOrFail($id);
+        $event->delete();
+        if($event){
+            session()->flash('success','Notification a été Supprimé avec succée');
+            return to_route('admin.dashboard');
+        }
+            session()->flash('fail',"notification n'est pas été Supprimé");
+            return to_route('admin.dashboard');
+    }
+    public function multiplDeleteAndEditEvents(Request $request){
 
-    public function multiplDeleteEvents(Request $request){
+        if(empty($request->events)){
 
+            session()->flash('info','Please select some events');
+            return to_route('admin.all.event');
+        }
         if($request->has('editEventStatusButton')){
-
+            if(!$request->has('editEventStatusSelect')){
+                    session()->flash('info','Please select Event Status');
+                    return to_route('admin.all.event');
+            }
             $events = Event::whereIn('id',$request->events)->update([
                 'status' => $request->editEventStatusSelect,
             ]);

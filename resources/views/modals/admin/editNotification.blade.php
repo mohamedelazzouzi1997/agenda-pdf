@@ -33,13 +33,17 @@
                     placeholder="Description"></textarea>
             </form>
 
-            <div class="modal-footer">
-                <button form="editmyform" type="submit"
-                    class="px-6 py-2 bg-teal-500 rounded-lg shadow-xl hover:bg-teal-600 text-white waves-effect">
+            <div class="flex justify-between mb-4 px-4">
+                <div class="float-left">
+                    <form id="deleteOneEventForm" action="" method="get">
+                        @csrf
+                        <button id="deleteOneEventButton" class="btn btn-danger float-left shadow-md">Supprimé</butt>
+                    </form>
+                </div>
+                <button form="editmyform" type="submit" class="btn btn-primary text-white waves-effect shadow-md">
                     Modifier
                 </button>
-                <button type="button"
-                    class="px-6 py-2 bg-red-500 shadow-xl hover:bg-red-600 rounded-lg text-white waves-effect"
+                <button type="button" class="btn btn-muted text-white waves-effect shadow-md"
                     data-dismiss="modal">CLOSE</button>
             </div>
         </div>

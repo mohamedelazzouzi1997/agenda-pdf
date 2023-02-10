@@ -40,7 +40,8 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/admin/all/event',[adminEventController::class,'allEvent'])->name('all.event');
             Route::get('/admin/valide/agenda/events',[adminEventController::class,'evendValide'])->name('valide.event');
             Route::put('/admin/event/update/{id}',[adminEventController::class,'update'])->name('update.event');
-            Route::delete('/admin/event/multiple/delete',[adminEventController::class,'multiplDeleteEvents'])->name('delete.multipl.event');
+            Route::delete('/admin/event/multiple/edit',[adminEventController::class,'multiplDeleteAndEditEvents'])->name('delete.multipl.event');
+            Route::get('/admin/event/delete/{id}',[adminEventController::class,'delete'])->name('delete.event');
 
     });
 });

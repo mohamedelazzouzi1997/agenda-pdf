@@ -6,6 +6,7 @@
 
 @section('after-styles')
     <link rel="stylesheet" href="{{ asset('css/adminCss.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/jqueryConfirm.css') }}">
 @endsection
 
 @section('content')
@@ -17,6 +18,8 @@
 
 @section('after-scripts')
     <script src="{{ asset('fullcalendar/fullcalendarglobal.js') }}"></script>
+    <script src="{{ asset('js/jqueryConfirm.js') }}"></script>
+
     <script src="{{ asset('js/adminJs.js') }}"></script>
     @if (Session::has('success'))
         <script>
