@@ -22,13 +22,14 @@
                 </div>
                 <div class="body shadow-2xl">
                     <div class="table-responsive">
-                        <table class="table table-bordered table-striped table-hover  dataTable js-exportable">
+                        <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
                             <thead>
                                 <tr>
                                     <th>id</th>
                                     <th>date</th>
                                     <th>Title du tache</th>
                                     <th>description</th>
+                                    <th>User</th>
                                     <th>Etat</th>
                                 </tr>
                             </thead>
@@ -39,6 +40,7 @@
                                         <td>{{ $event->start }}</td>
                                         <td>{{ Str::limit($event->title, 50) }}</td>
                                         <td>{{ Str::limit($event->description, 15) }}</td>
+                                        <td>{{ $event->user->name }}</td>
                                         <td> <span class="badge badge-success uppercase">{{ $event->status }}</span></td>
                                     </tr>
                                 @endforeach

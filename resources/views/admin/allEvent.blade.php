@@ -40,12 +40,12 @@
                             </div>
                             <div class="text-end flex justify-center items-center space-x-2">
 
-                                <select name="editEventStatusSelect"
-                                    class="form-control show-tick ms select2 shadow-md w-1/2" data-placeholder="Select">
+                                <select name="editEventStatusSelect" class="rounded ms select2 shadow-md w-1/2"
+                                    data-placeholder="Select">
                                     <option disabled selected>select status</option>
-                                    <option value="En attente">En attente</option>
-                                    <option value="Valide">Validé</option>
-                                    <option value="Rejete">Rejeté</option>
+                                    <option class="bg-warning" value="En attente">En attente</option>
+                                    <option class="bg-teal-500" value="Valide">Validé</option>
+                                    <option class="bg-danger" value="Rejete">Rejeté</option>
                                 </select>
                                 <button id="editEventStatusButton" name="editEventStatusButton" type="submit"
                                     class="btn shadow-xl btn-primary w-1/2 waves-effect">
@@ -54,14 +54,16 @@
                         </div>
 
                         <div class="table-responsive">
-                            <table class="table table-bordered table-striped table-hover  dataTable js-exportable">
+                            <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
                                 <thead>
                                     <tr>
-                                        <th>/</th>
+                                        <th data-orderable="false"> <input id="makeAllChecked" type="checkbox"
+                                                name="checkallbox"></th>
                                         <th>id</th>
                                         <th>date</th>
                                         <th>Title du tache</th>
                                         <th>description</th>
+                                        <th>User</th>
                                         <th>Etat</th>
                                     </tr>
                                 </thead>
@@ -69,13 +71,15 @@
                                     @foreach ($EVENT as $event)
                                         <tr>
                                             <td>
-                                                <input id="eventsChackbox" type="checkbox" name="events[]"
+                                                <input class="evenCheckBox" type="checkbox" name="events[]"
                                                     value="{{ $event->id }}">
                                             </td>
                                             <td>{{ $event->id }}</td>
                                             <td>{{ $event->start }}</td>
                                             <td>{{ Str::limit($event->title, 50) }}</td>
                                             <td>{{ Str::limit($event->description, 15) }}</td>
+                                            <td>{{ $event->user->name }}</td>
+
                                             <td>
                                                 @if ($event->status == 'Rejete')
                                                     <span class="badge badge-danger uppercase">{{ $event->status }}</span>
@@ -91,10 +95,6 @@
                             </table>
                         </div>
                     </form>
-                    <a href="{{ route('export.event') }}"
-                        class="px-3 py-2 bg-slate-900 shadow-xl hover:bg-slate-800 text-white rounded">EXEL
-                    </a>
-
                 </div>
             </div>
         </div>
@@ -187,6 +187,23 @@
                 },
                 close: function() {}
             }
+        });
+        $(document).ready(function() {
+            //page all notification
+            $('#makeAllChecked').click(function() {
+                if ($('#makeAllChecked').is(":checked")) {
+                    $('#makeAllChecked').click(function() {
+                        $('.evenCheckBox').prop('checked', false);
+                    })
+                } else {
+                    $('#makeAllChecked').click(function() {
+                        $('.evenCheckBox').prop('checked', true);
+                    })
+                }
+
+            });
+
+
         });
     </script>
 @endsection

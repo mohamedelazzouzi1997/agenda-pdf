@@ -24,12 +24,12 @@
                     <input class="form-control  shadow-md" id="editeventDate" type="datetime-local" name="start">
 
                 </div>
-                <select name="status" id="editEventStatus" class="form-control mb-3 shadow-md">
-                    <option value="En attente">En attente</option>
-                    <option value="Rejete">Rejete</option>
-                    <option value="Valide">Valide</option>
+                <select name="status" id="editEventStatus" class="w-full border border-gray-100 rounded shadow-md">
+                    <option class="text-warning" value="En attente">En attente</option>
+                    <option class="text-danger" value="Rejete">Rejete</option>
+                    <option class="text-success" value="Valide">Valide</option>
                 </select>
-                <textarea class="form-control shadow-md" name="description" id="editEventDescription" cols="30" rows="5"
+                <textarea class="form-control shadow-md mt-3" name="description" id="editEventDescription" cols="30" rows="5"
                     placeholder="Description"></textarea>
             </form>
 

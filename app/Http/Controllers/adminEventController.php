@@ -21,17 +21,18 @@ class adminEventController extends Controller
         // return view('admin.dashboard',compact('eventsData'));
     }
     public function indexDashboard(Request $request){
-                // dd($request->filter);
         if($request->has('filter')){
             $events = Event::with('user')->where('user_id',$request->filter)->get();
+            $current_user = User::find($request->filter);
         }else{
             $events = Event::with('user')->get();
+            $current_user = 'all';
         }
         // get all event and passet as a parameter for the eventToarray function
         $eventsData = $this->eventToArray($events);
         // dd($eventsData);
         $users = User::all();
-        return view('admin.dashboard',compact('users','eventsData'));
+        return view('admin.dashboard',compact('users','eventsData','current_user'));
     }
 
     public function eventToArray($events){
