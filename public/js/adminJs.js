@@ -56,7 +56,7 @@
                         container: "body"
                     });
                 },
-                events: '/admin/getEvents',
+                events: eventDtat.original,
                 eventClick: function(info) {
                     var currentDate = info.event.start;
 

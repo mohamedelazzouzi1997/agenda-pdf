@@ -2,16 +2,38 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Event;
 use Illuminate\Http\Request;
 
 class adminEventController extends Controller
 {
-    public function index(){
-
-        // get all event and passet as a parameter for the eventToarray function
-        return $this->eventToArray(Event::with('user')->get());
+    public function index(Request $request){
+        // // dd($request->filter);
+        // if($request->has('filter')){
+        //     $events = Event::with('user')->where('user_id',$request->filter)->get();
+        // }else{
+        //     $events = Event::with('user')->get();
+        // }
+        // // get all event and passet as a parameter for the eventToarray function
+        // $eventsData = $this->eventToArray($events);
+        // dd($eventsData);
+        // return view('admin.dashboard',compact('eventsData'));
     }
+    public function indexDashboard(Request $request){
+                // dd($request->filter);
+        if($request->has('filter')){
+            $events = Event::with('user')->where('user_id',$request->filter)->get();
+        }else{
+            $events = Event::with('user')->get();
+        }
+        // get all event and passet as a parameter for the eventToarray function
+        $eventsData = $this->eventToArray($events);
+        // dd($eventsData);
+        $users = User::all();
+        return view('admin.dashboard',compact('users','eventsData'));
+    }
+
     public function eventToArray($events){
         $eventArray = [];
         foreach($events as $event){

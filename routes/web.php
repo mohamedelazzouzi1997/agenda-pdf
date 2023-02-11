@@ -34,7 +34,7 @@ Route::middleware(['auth'])->group(function () {
     // admin routes
         Route::group(['middleware'=> 'is_admin', 'as' => 'admin.'],function () {
             Route::post('/admin/event/store',[adminEventController::class,'store'])->name('store.event');
-            Route::get('/admin/agenda', function () {return view('admin.dashboard');})->name('dashboard');
+            Route::get('/admin/agenda', [adminEventController::class,'indexDashboard'])->name('dashboard');
             Route::get('/admin/getEvents',[adminEventController::class,'index'])->name('events');
             Route::put('/admin/event/drop/update/{id}',[adminEventController::class,'updateEventByDrop'])->name('events.drop.update');
             Route::get('/admin/all/event',[adminEventController::class,'allEvent'])->name('all.event');
