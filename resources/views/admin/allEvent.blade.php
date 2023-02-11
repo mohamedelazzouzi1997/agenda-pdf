@@ -7,6 +7,8 @@
 @section('after-styles')
     <link rel="stylesheet" href="{{ asset('assets/plugins/jquery-datatable/dataTables.bootstrap4.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/jqueryConfirm.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/plugins/select2/select2.css') }}" />
+
     <style>
         .buttons-copy,
         .buttons-print {
@@ -23,8 +25,29 @@
                 <div class="text-center uppercase">
                     <h2 class="text-3xl"><strong class="text-green-500">Admin Tous</strong> Notification </h2>
                 </div>
+                <div class="">
+                    <form action="{{ route('admin.all.event') }}" class="flex space-x-10 justify-center items-center"
+                        method="get">
+                        @csrf
+                        <div class="grid grid-cols-1">
+                            <select class=" ms shadow-md select2" aria-placeholder="Select" name="filter">
+                                @foreach ($users as $user)
+                                    <option value="{{ $user->id }}">
+                                        {{ $user->name }}</option>
+                                @endforeach
+                            </select>
+                            <button name="filterButton" type="submit" class="btn btn-primary shadow-md">Filter</button>
+                        </div>
+                    </form>
+                    <div>
+                        @if ($current_user == 'all')
+                            All Users
+                        @else
+                            <span class="text-xl font-extrabold text-green-500">User :</span> {{ $current_user->name }}
+                        @endif
+                    </div>
+                </div>
                 <div class="body shadow-2xl">
-
 
                     <form id="allEventForm" action="{{ route('admin.delete.multipl.event') }}" method="post">
                         @csrf
@@ -40,7 +63,7 @@
                             </div>
                             <div class="text-end flex justify-center items-center space-x-2">
 
-                                <select name="editEventStatusSelect" class="rounded ms select2 shadow-md w-1/2"
+                                <select name="editEventStatusSelect" class="rounded ms shadow-md w-1/2"
                                     data-placeholder="Select">
                                     <option disabled selected>select status</option>
                                     <option class="bg-warning" value="En attente">En attente</option>
@@ -68,7 +91,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($EVENT as $event)
+                                    @foreach ($EVENTS as $event)
                                         <tr>
                                             <td>
                                                 <input class="evenCheckBox" type="checkbox" name="events[]"
@@ -107,6 +130,7 @@
     <script defer src="{{ asset('assets/plugins/jquery-datatable/buttons/buttons.print.min.js') }}"></script>
     <script defer src="{{ asset('assets/js/pages/tables/jquery-datatable.js') }}"></script>
     <script src="{{ asset('js/jqueryConfirm.js') }}"></script>
+    <script src="{{ asset('assets/plugins/select2/select2.min.js') }}"></script>
     <script>
         const ToasterOptions = {
             "closeButton": false,
@@ -202,6 +226,7 @@
                 }
 
             });
+            $('.select2').select2()
 
 
         });

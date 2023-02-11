@@ -59,6 +59,8 @@ class adminEventController extends Controller
         return response()->json($eventArray);
     }
 
+
+
     public function updateEventByDrop(Request $request, $id){
         $event = Event::findOrFail($id);
         $event->update([
@@ -68,6 +70,10 @@ class adminEventController extends Controller
             'success' => 'Event a été modifier avec succée'
         ]);
     }
+
+
+
+
     public function store(Request $request){
         $event = Event::create([
             'title' => $request->title,
@@ -82,6 +88,10 @@ class adminEventController extends Controller
             session()->flash('fail','Notification a été pas ajouté');
             return to_route('admin.dashboard');
     }
+
+
+
+
 
     public function update(Request $request, $id){
         $event = Event::findOrFail($id);
@@ -99,10 +109,23 @@ class adminEventController extends Controller
             return to_route('admin.dashboard');
     }
 
-    public function allEvent(){
-        $EVENT = Event::latest('id')->get();
-        return view('admin.allEvent',compact('EVENT'));
+
+
+
+    public function allEvent(Request $request){
+
+        if($request->has('filter')){
+            $EVENTS = Event::with('user')->where('user_id',$request->filter)->get();
+            $current_user = User::find($request->filter);
+        }else{
+            $EVENTS = Event::latest('id')->get();
+            $current_user = 'all';
+        }
+        $users = User::all();
+        return view('admin.allEvent',compact('EVENTS','current_user','users'));
     }
+
+
 
 
     public function evendValide(){
@@ -111,6 +134,9 @@ class adminEventController extends Controller
 
         return view('admin.eventValide',compact('EVENT_VALIDES'));
     }
+
+
+
     public function delete($id){
         $event = Event::findOrFail($id);
         $event->delete();
@@ -121,6 +147,10 @@ class adminEventController extends Controller
             session()->flash('fail',"notification n'est pas été Supprimé");
             return to_route('admin.dashboard');
     }
+
+
+
+
     public function multiplDeleteAndEditEvents(Request $request){
 
         if(empty($request->events)){

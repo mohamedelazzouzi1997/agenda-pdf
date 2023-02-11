@@ -1,7 +1,7 @@
 <div class="modal fade" id="addNotification" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <div class="modal-header py-3 px-5 uppercase bg-teal-500 shadow-lg shadow-cyan-500/50">
+            <div class="modal-header shadow-md py-3 px-5 uppercase bg-teal-500 shadow-cyan-500/50">
                 <h4 class="title text-center font-extrabold" id="addNotification">ajoute Nouvelle Notificaton </h4>
             </div>
             <form id="myform" action="{{ route('admin.store.event') }}" method="post" class="form-group px-4 py-3">

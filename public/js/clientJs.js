@@ -20,13 +20,21 @@
             const calendarEl = document.getElementById('calendar');
             const calendar = new FullCalendar.Calendar(calendarEl, {
                 locale: 'fr', // change calendare to fr lang
-                initialView: 'dayGridMonth',
+                initialView: 'timeGridWeek',
                 headerToolbar: {
                     left: 'prev,next today',
                     center: 'title',
-                    right: 'dayGridYear,dayGridMonth,dayGridWeek,dayGridDay,list'
+                    right: 'dayGridYear,dayGridMonth,timeGridWeek,timeGridDay,list'
                 },
-                dayMaxEvents: 3, // for all non-TimeGrid views
+                businessHours: {
+                    // days of week. an array of zero-based day of week integers (0=Sunday)
+                    daysOfWeek: [1, 2, 3, 4, 5], // Monday - Thursday
+
+                    startTime: '09:00', // a start time (10am in this example)
+                    endTime: '18:00', // an end time (6pm in this example)
+                },
+                slotDuration: '00:05:00',
+                dayMaxEvents: 5, // for all non-TimeGrid views
                 buttonText: {
                     today: "Aujourd'hui",
                     month: 'Mois',
@@ -93,7 +101,31 @@
 
                 },
                 select: function(selectionInfo) {
-                    $('#eventDate').val(selectionInfo.startStr + 'T00:00');
+                    if (selectionInfo.view.type == 'timeGridWeek' || selectionInfo.view.type == 'timeGridDay') {
+
+                        var currentDate = selectionInfo.start;
+
+                        var month = currentDate.getMonth() + 1;
+                        if (month < 10) month = "0" + month;
+
+                        var dateOfMonth = currentDate.getDate();
+                        if (dateOfMonth < 10) dateOfMonth = "0" + dateOfMonth;
+                        var year = currentDate.getFullYear();
+
+                        var hour = currentDate.getHours();
+                        if (hour < 10) hour = "0" + hour;
+
+                        var minute = currentDate.getMinutes();
+                        if (minute < 10) minute = "0" + minute;
+
+                        var formattedDate = year + "-" + month + "-" + dateOfMonth + 'T' + hour + ':' +
+                            minute;
+                        console.log(formattedDate);
+                        $('#eventDate').val(formattedDate);
+
+                    } else {
+                        $('#eventDate').val(selectionInfo.startStr + 'T00:00');
+                    }
                     $('#addNotification').modal();
                 }
             });
