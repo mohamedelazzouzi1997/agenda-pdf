@@ -33,7 +33,7 @@
                     startTime: '09:00', // a start time (10am in this example)
                     endTime: '18:00', // an end time (6pm in this example)
                 },
-                slotDuration: '00:05:00',
+                slotDuration: '01:00:00',
                 dayMaxEvents: 5, // for all non-TimeGrid views
                 buttonText: {
                     today: "Aujourd'hui",

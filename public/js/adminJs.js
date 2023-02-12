@@ -33,7 +33,7 @@
                     center: 'title',
                     right: 'dayGridYear,dayGridMonth,timeGridWeek,timeGridDay,list'
                 },
-                slotDuration: '00:05:00',
+                slotDuration: '01:00:00',
                 dayMaxEvents: 5, // for all non-TimeGrid views
                 buttonText: {
                     today: "Aujourd'hui",

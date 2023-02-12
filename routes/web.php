@@ -1,5 +1,8 @@
 <?php
 
+use Carbon\Carbon;
+use App\Models\User;
+use App\Models\Event;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\adminEventController;
@@ -18,6 +21,7 @@ use App\Http\Controllers\adminEventController;
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/', function () {
+
         if(!auth()->user()->is_admin){
             return to_route('dashboard');
         }
