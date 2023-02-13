@@ -57,7 +57,7 @@
                                 <a href="{{ route('export.event') }}"
                                     class="px-3 py-2 bg-slate-900 shadow-xl hover:bg-slate-800 text-white rounded ">EXEL
                                 </a>
-                                <button id="deleteEventButton" name="deleteEventButton" type="submit"
+                                <button disabled id="deleteEventButton" name="deleteEventButton" type="submit"
                                     class="btn shadow-xl btn-danger waves-effect"><i class="zmdi zmdi-delete"></i>
                                     Supprimé</button>
                             </div>
@@ -70,7 +70,7 @@
                                     <option class="bg-teal-500" value="Valide">Validé</option>
                                     <option class="bg-danger" value="Rejete">Rejeté</option>
                                 </select>
-                                <button id="editEventStatusButton" name="editEventStatusButton" type="submit"
+                                <button disabled id="editEventStatusButton" name="editEventStatusButton" type="submit"
                                     class="btn shadow-xl btn-primary w-1/2 waves-effect">
                                     Modifier</button>
                             </div>
@@ -214,18 +214,25 @@
         });
         $(document).ready(function() {
             //page all notification
-            $('#makeAllChecked').click(function() {
-                if ($('#makeAllChecked').is(":checked")) {
-                    $('#makeAllChecked').click(function() {
-                        $('.evenCheckBox').prop('checked', false);
-                    })
-                } else {
-                    $('#makeAllChecked').click(function() {
-                        $('.evenCheckBox').prop('checked', true);
-                    })
-                }
+            var clicked = false;
+            $("#makeAllChecked").on("click", function() {
+                $(".evenCheckBox").prop("checked", !clicked);
+                clicked = !clicked;
+
+                $("#deleteEventButton").prop("disabled", !clicked);
+                $("#editEventStatusButton").prop("disabled", !clicked);
 
             });
+            $('.evenCheckBox').click(function() {
+                var numberOfChecked = $('input:checkbox:checked').length;
+                if (numberOfChecked > 0) {
+                    $("#deleteEventButton").prop("disabled", false);
+                    $("#editEventStatusButton").prop("disabled", false);
+                } else {
+                    $("#deleteEventButton").prop("disabled", true);
+                    $("#editEventStatusButton").prop("disabled", true);
+                }
+            })
             $('.select2').select2()
 
 
