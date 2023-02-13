@@ -177,71 +177,153 @@
                 </tbody>
             </table>
         </div>
-        <div style="background:#FFCDB0;background-color:#FFCDB0;margin:0px auto;border-radius:4px;max-width:600px;">
-            <table role="presentation" style="background:#FFCDB0;background-color:#FFCDB0;width:100%;border-radius:4px;"
-                cellspacing="0" cellpadding="0" border="0" align="center">
-                <tbody>
-                    <tr>
-                        <td style="direction:ltr;font-size:0px;padding:20px 0;text-align:center;">
-                            <div class="mj-column-per-100 mj-outlook-group-fix"
-                                style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
-                                <table role="presentation" style="vertical-align:top;" width="100%" cellspacing="0"
-                                    cellpadding="0" border="0">
-                                    <tbody>
-                                        <tr>
-                                            <td style="font-size:0px;padding:10px 25px;word-break:break-word;"
-                                                align="left">
-                                                <div
-                                                    style="font-family:Helvetica, Arial, sans-serif;font-size:18px;font-weight:bold;line-height:24px;text-align:left;color:#7A0B1F;">
-                                                    <p class="date"
-                                                        style="margin: 0; margin-bottom: 5px; font-size: 16px;">ALERT
-                                                    </p>
-                                                    <h2
-                                                        style="margin: 0; font-size: 24px; font-weight: bold; line-height: 24px;">
-                                                        Delivery Cancelled</h2>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td style="font-size:0px;padding:10px 25px;word-break:break-word;"
-                                                align="left">
-                                                <div
-                                                    style="font-family:Helvetica, Arial, sans-serif;font-size:18px;font-weight:400;line-height:24px;text-align:left;color:#7A0B1F;">
-                                                    <p style="margin: 0;">Your order could not be completed and has
-                                                        been cancelled. Your account has not been charged and we
-                                                        apologize for the inconvenience. </p>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td vertical-align="middle"
-                                                style="font-size:0px;padding:10px 25px;word-break:break-word;"
-                                                align="right">
-                                                <table role="presentation"
-                                                    style="border-collapse:separate;line-height:100%;" cellspacing="0"
-                                                    cellpadding="0" border="0">
-                                                    <tbody>
-                                                        <tr>
-                                                            <td role="presentation"
-                                                                style="border:none;border-radius:30px;cursor:auto;mso-padding-alt:10px 25px;background:#7A0B1F;"
-                                                                valign="middle" bgcolor="#7A0B1F" align="center">
-                                                                <a href="https://google.com"
-                                                                    style="display: inline-block; background: #7A0B1F; color: #FFCDB0; font-family: Helvetica, Arial, sans-serif; font-size: 14px; font-weight: bold; line-height: 30px; margin: 0; text-decoration: none; text-transform: uppercase; padding: 10px 25px; mso-padding-alt: 0px; border-radius: 30px;"
-                                                                    target="_blank"> more details </a>
-                                                            </td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+        @foreach ($events as $event)
+            @if ($event->status == 'Valide')
+                <div
+                    style="background:#D3FBD8;background-color:#D3FBD8;margin:0px auto;border-radius:4px;max-width:600px;margin-bottom:20px;">
+                    <table role="presentation"
+                        style="background:#D3FBD8;background-color:#D3FBD8;width:100%;border-radius:4px;"
+                        cellspacing="0" cellpadding="0" border="0" align="center">
+                        <tbody>
+                            <tr>
+                                <td style="direction:ltr;font-size:0px;padding:20px 0;text-align:center;">
+                                    <div class="mj-column-per-100 mj-outlook-group-fix"
+                                        style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
+                                        <table role="presentation" style="vertical-align:top;" width="100%"
+                                            cellspacing="0" cellpadding="0" border="0">
+                                            <tbody>
+                                                <tr>
+                                                    <td style="font-size:0px;padding:10px 25px;word-break:break-word;"
+                                                        align="left">
+                                                        <div
+                                                            style="font-family:Helvetica, Arial, sans-serif;font-size:18px;font-weight:bold;line-height:24px;text-align:left;color:#7A0B1F;">
+                                                            <p class="date"
+                                                                style="margin: 0; margin-bottom: 5px; font-size: 16px;">
+                                                                Event Valide
+                                                            </p>
+                                                            <h2
+                                                                style="margin: 0; font-size: 24px; font-weight: bold; line-height: 24px;">
+                                                                {{ $event->title }}</h2>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="font-size:0px;padding:10px 25px;word-break:break-word;"
+                                                        align="left">
+                                                        <div
+                                                            style="font-family:Helvetica, Arial, sans-serif;font-size:18px;font-weight:400;line-height:24px;text-align:left;color:#7A0B1F;">
+                                                            <p style="margin: 0;">{{ $event->description }}</p>
+                                                            <h5
+                                                                style="margin: 0; font-size: 16px; font-weight: bold; line-height: 24px;color:black">
+                                                                {{ Carbon\Carbon::parse($event->start)->format('Y-m-d') }}
+                                                            </h5>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                {{-- <tr>
+                                                    <td vertical-align="middle"
+                                                        style="font-size:0px;padding:10px 25px;word-break:break-word;"
+                                                        align="right">
+                                                        <table role="presentation"
+                                                            style="border-collapse:separate;line-height:100%;"
+                                                            cellspacing="0" cellpadding="0" border="0">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td role="presentation"
+                                                                        style="border:none;border-radius:30px;cursor:auto;mso-padding-alt:10px 25px;background:#7A0B1F;"
+                                                                        valign="middle" bgcolor="#7A0B1F"
+                                                                        align="center">
+                                                                        <a href="https://google.com"
+                                                                            style="display: inline-block; background: #7A0B1F; color: #FFCDB0; font-family: Helvetica, Arial, sans-serif; font-size: 14px; font-weight: bold; line-height: 30px; margin: 0; text-decoration: none; text-transform: uppercase; padding: 10px 25px; mso-padding-alt: 0px; border-radius: 30px;"
+                                                                            target="_blank"> more details </a>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </td>
+                                                </tr> --}}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            @else
+                <div
+                    style="background:#FFF0B5;background-color:#FFF0B5;margin:0px auto;border-radius:4px;max-width:600px;margin-bottom:20px;">
+                    <table role="presentation"
+                        style="background:#FFF0B5;background-color:#FFF0B5;width:100%;border-radius:4px;"
+                        cellspacing="0" cellpadding="0" border="0" align="center">
+                        <tbody>
+                            <tr>
+                                <td style="direction:ltr;font-size:0px;padding:20px 0;text-align:center;">
+                                    <div class="mj-column-per-100 mj-outlook-group-fix"
+                                        style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
+                                        <table role="presentation" style="vertical-align:top;" width="100%"
+                                            cellspacing="0" cellpadding="0" border="0">
+                                            <tbody>
+                                                <tr>
+                                                    <td style="font-size:0px;padding:10px 25px;word-break:break-word;"
+                                                        align="left">
+                                                        <div
+                                                            style="font-family:Helvetica, Arial, sans-serif;font-size:18px;font-weight:bold;line-height:24px;text-align:left;color:#7A0B1F;">
+                                                            <p class="date"
+                                                                style="margin: 0; margin-bottom: 5px; font-size: 16px;">
+                                                                Event En attent
+                                                            </p>
+                                                            <h2
+                                                                style="margin: 0; font-size: 24px; font-weight: bold; line-height: 24px;">
+                                                                {{ $event->title }}</h2>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="font-size:0px;padding:10px 25px;word-break:break-word;"
+                                                        align="left">
+                                                        <div
+                                                            style="font-family:Helvetica, Arial, sans-serif;font-size:18px;font-weight:400;line-height:24px;text-align:left;color:#7A0B1F;">
+                                                            <p style="margin: 0;">{{ $event->description }} </p>
+                                                        </div>
+                                                        <h5
+                                                            style="margin: 0; font-size: 16px; font-weight: bold; line-height: 24px;">
+                                                            {{ Carbon\Carbon::parse($event->start)->format('Y-m-d') }}
+                                                        </h5>
+                                                    </td>
+                                                </tr>
+                                                {{-- <tr>
+                                                    <td vertical-align="middle"
+                                                        style="font-size:0px;padding:10px 25px;word-break:break-word;"
+                                                        align="right">
+                                                        <table role="presentation"
+                                                            style="border-collapse:separate;line-height:100%;"
+                                                            cellspacing="0" cellpadding="0" border="0">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td role="presentation"
+                                                                        style="border:none;border-radius:30px;cursor:auto;mso-padding-alt:10px 25px;background:#7A0B1F;"
+                                                                        valign="middle" bgcolor="#7A0B1F"
+                                                                        align="center">
+                                                                        <a href="https://google.com"
+                                                                            style="display: inline-block; background: #7A0B1F; color: #FFCDB0; font-family: Helvetica, Arial, sans-serif; font-size: 14px; font-weight: bold; line-height: 30px; margin: 0; text-decoration: none; text-transform: uppercase; padding: 10px 25px; mso-padding-alt: 0px; border-radius: 30px;"
+                                                                            target="_blank"> more details </a>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </td>
+                                                </tr> --}}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            @endif
+        @endforeach
     </div>
 
 
