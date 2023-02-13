@@ -32,15 +32,19 @@ class EventNotifyCommande extends Command
      */
     public function handle()
     {
-       $value = Carbon::now()->addDays(3)->toDateString();
+       $Two_days_befor = Carbon::now()->addDays(2)->toDateString();
+       $Four_days_befor = Carbon::now()->addDays(4)->toDateString();
 
-            $Users = User::with(['events'=> function($q) use($value){
-                $q->whereiN('status', ['Valide','Rejete','En attente'])
-                ->whereDate( 'start', $value);
+            $Users = User::with(['events'=> function($q) use($Four_days_befor,$Two_days_befor){
+                $q->whereIn('status', ['Valide','En attente'])
+                ->whereDate( 'start', $Two_days_befor)
+                ->orWhereDate( 'start', $Four_days_befor);
             }])->get();
 
             foreach ($Users as $user) {
-                Mail::to($user->email)->send(new EventNotify($user));
+                if($user->events->count()){
+                    Mail::to($user->email)->send(new EventNotify($user));
+                }
             }
     }
 }
