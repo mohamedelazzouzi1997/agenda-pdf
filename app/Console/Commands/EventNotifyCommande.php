@@ -23,7 +23,7 @@ class EventNotifyCommande extends Command
      *
      * @var string
      */
-    protected $description = 'Event Notify';
+    protected $description = 'Notify User by their tasks';
 
     /**
      * Execute the console command.

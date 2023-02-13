@@ -35,7 +35,7 @@ class EventNotify extends Mailable
     public function envelope()
     {
         return new Envelope(
-            subject: 'Event Notify',
+            subject: 'Events Notification',
         );
     }
 

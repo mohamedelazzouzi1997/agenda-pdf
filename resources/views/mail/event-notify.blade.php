@@ -86,6 +86,9 @@
 </head>
 
 <body style="background-color:#ffffff;">
+    @php
+        Carbon\Carbon::setLocale('fr');
+    @endphp
     <div
         style="display:none;font-size:1px;color:#ffffff;line-height:1px;max-height:0px;max-width:0px;opacity:0;overflow:hidden;">
         Preview - Welcome to Coded Mails </div>
@@ -104,30 +107,13 @@
                                         <tr>
                                             <td style="font-size:0px;padding:10px 25px;word-break:break-word;"
                                                 align="left">
-                                                <table role="presentation"
-                                                    style="border-collapse:collapse;border-spacing:0px;" cellspacing="0"
-                                                    cellpadding="0" border="0">
-                                                    <tbody>
-                                                        <tr>
-                                                            <td style="width:50px;">
-                                                                <img alt="image description"
-                                                                    src="https://codedmails.com/images/logo-circle.png"
-                                                                    style="border:0;display:block;outline:none;text-decoration:none;height:auto;width:100%;font-size:14px;"
-                                                                    width="50" height="auto" />
-                                                            </td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td style="font-size:0px;padding:10px 25px;word-break:break-word;"
-                                                align="left">
                                                 <div
                                                     style="font-family:Helvetica, Arial, sans-serif;font-size:18px;font-weight:400;line-height:24px;text-align:left;color:#434245;">
                                                     <h1
                                                         style="margin: 0; font-size: 24px; line-height: normal; font-weight: bold;">
-                                                        You got a new <br /> Notification </h1>
+                                                        Vous avez un nouveau
+                                                        <br /> Notification
+                                                    </h1>
                                                 </div>
                                             </td>
                                         </tr>
@@ -159,16 +145,6 @@
                                                 </div>
                                             </td>
                                         </tr>
-                                        <tr>
-                                            <td style="font-size:0px;padding:10px 25px;word-break:break-word;"
-                                                align="left">
-                                                <div
-                                                    style="font-family:Helvetica, Arial, sans-serif;font-size:18px;font-weight:400;line-height:24px;text-align:left;color:#434245;">
-                                                    <p style="margin: 0;">We have some new notifications regarding your
-                                                        account.</p>
-                                                </div>
-                                            </td>
-                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
@@ -196,14 +172,31 @@
                                                     <td style="font-size:0px;padding:10px 25px;word-break:break-word;"
                                                         align="left">
                                                         <div
-                                                            style="font-family:Helvetica, Arial, sans-serif;font-size:18px;font-weight:bold;line-height:24px;text-align:left;color:#7A0B1F;">
-                                                            <p class="date"
-                                                                style="margin: 0; margin-bottom: 5px; font-size: 16px;">
-                                                                Event Valide
-                                                            </p>
+                                                            style="text-align: center; font-family:Helvetica, Arial, sans-serif;font-size:18px;font-weight:bold;line-height:24px;text-align:left;color:#7A0B1F;">
                                                             <h2
-                                                                style="margin: 0; font-size: 24px; font-weight: bold; line-height: 24px;">
-                                                                {{ $event->title }}</h2>
+                                                                style="margin: 0;text-align: center; font-size: 24px; font-weight: bold; line-height: 24px;">
+                                                                N'OUBLIEZ PAS <br> {{ $event->title }}</h2>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="font-size:0px;padding:10px 25px;word-break:break-word;"
+                                                        align="center">
+                                                        <div
+                                                            style="text-align: center; font-family:Helvetica, Arial, sans-serif;font-size:18px;font-weight:bold;line-height:24px;text-align:left;color:#7A0B1F;">
+                                                            <div style="text-align: center">
+                                                                {{-- @if (Carbon\Carbon::parse($event->start)->subDays(2)->isSameDay())
+                                                                    <p
+                                                                        style="font-size:100px;text-align: center;margin:60px">
+                                                                        &#128556;
+                                                                    </p>
+                                                                @else
+                                                                @endif --}}
+                                                                <p
+                                                                    style="font-size:100px;text-align: center;margin:60px">
+                                                                    &#128522;
+                                                                </p>
+                                                            </div>
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -212,36 +205,18 @@
                                                         align="left">
                                                         <div
                                                             style="font-family:Helvetica, Arial, sans-serif;font-size:18px;font-weight:400;line-height:24px;text-align:left;color:#7A0B1F;">
-                                                            <p style="margin: 0;">{{ $event->description }}</p>
+                                                            <p style="margin: 20px;text-align: center">
+                                                                {{ $event->description }}</p>
                                                             <h5
-                                                                style="margin: 0; font-size: 16px; font-weight: bold; line-height: 24px;color:black">
-                                                                {{ Carbon\Carbon::parse($event->start)->format('Y-m-d') }}
+                                                                style="text-align: center;margin: 0; font-size: 16px; font-weight: bold; line-height: 24px;color:black">
+                                                                <span
+                                                                    style="color:#7A0B1F;font-size:20px;font-weight:bold">DANS
+                                                                    LA DATE:</span>
+                                                                {{ Carbon\Carbon::parse($event->start)->format('F j-Y h:m') }}
                                                             </h5>
                                                         </div>
                                                     </td>
                                                 </tr>
-                                                {{-- <tr>
-                                                    <td vertical-align="middle"
-                                                        style="font-size:0px;padding:10px 25px;word-break:break-word;"
-                                                        align="right">
-                                                        <table role="presentation"
-                                                            style="border-collapse:separate;line-height:100%;"
-                                                            cellspacing="0" cellpadding="0" border="0">
-                                                            <tbody>
-                                                                <tr>
-                                                                    <td role="presentation"
-                                                                        style="border:none;border-radius:30px;cursor:auto;mso-padding-alt:10px 25px;background:#7A0B1F;"
-                                                                        valign="middle" bgcolor="#7A0B1F"
-                                                                        align="center">
-                                                                        <a href="https://google.com"
-                                                                            style="display: inline-block; background: #7A0B1F; color: #FFCDB0; font-family: Helvetica, Arial, sans-serif; font-size: 14px; font-weight: bold; line-height: 30px; margin: 0; text-decoration: none; text-transform: uppercase; padding: 10px 25px; mso-padding-alt: 0px; border-radius: 30px;"
-                                                                            target="_blank"> more details </a>
-                                                                    </td>
-                                                                </tr>
-                                                            </tbody>
-                                                        </table>
-                                                    </td>
-                                                </tr> --}}
                                             </tbody>
                                         </table>
                                     </div>
@@ -268,14 +243,31 @@
                                                     <td style="font-size:0px;padding:10px 25px;word-break:break-word;"
                                                         align="left">
                                                         <div
-                                                            style="font-family:Helvetica, Arial, sans-serif;font-size:18px;font-weight:bold;line-height:24px;text-align:left;color:#7A0B1F;">
-                                                            <p class="date"
-                                                                style="margin: 0; margin-bottom: 5px; font-size: 16px;">
-                                                                Event En attent
-                                                            </p>
+                                                            style="text-align: center; font-family:Helvetica, Arial, sans-serif;font-size:18px;font-weight:bold;line-height:24px;text-align:left;color:#7A0B1F;">
                                                             <h2
-                                                                style="margin: 0; font-size: 24px; font-weight: bold; line-height: 24px;">
-                                                                {{ $event->title }}</h2>
+                                                                style="margin: 0;text-align: center; font-size: 24px; font-weight: bold; line-height: 24px;">
+                                                                N'OUBLIEZ PAS <br> {{ $event->title }}</h2>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="font-size:0px;padding:10px 25px;word-break:break-word;"
+                                                        align="center">
+                                                        <div
+                                                            style="text-align: center; font-family:Helvetica, Arial, sans-serif;font-size:18px;font-weight:bold;line-height:24px;text-align:left;color:#7A0B1F;">
+                                                            <div style="text-align: center">
+                                                                @if (Carbon\Carbon::parse($event->start)->subDays(2)->isSameDay())
+                                                                    <p
+                                                                        style="font-size:100px;text-align: center;margin:60px">
+                                                                        &#128556;
+                                                                    </p>
+                                                                @else
+                                                                    <p
+                                                                        style="font-size:100px;text-align: center;margin:60px">
+                                                                        &#128522;
+                                                                    </p>
+                                                                @endif
+                                                            </div>
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -284,36 +276,18 @@
                                                         align="left">
                                                         <div
                                                             style="font-family:Helvetica, Arial, sans-serif;font-size:18px;font-weight:400;line-height:24px;text-align:left;color:#7A0B1F;">
-                                                            <p style="margin: 0;">{{ $event->description }} </p>
+                                                            <p style="margin: 20px;text-align: center">
+                                                                {{ $event->description }} </p>
                                                         </div>
                                                         <h5
-                                                            style="margin: 0; font-size: 16px; font-weight: bold; line-height: 24px;">
-                                                            {{ Carbon\Carbon::parse($event->start)->format('Y-m-d') }}
+                                                            style="text-align: center;margin: 0; font-size: 16px; font-weight: bold; line-height: 24px;">
+                                                            <span
+                                                                style="color:#7A0B1F;font-size:20px;font-weight:bold">DANS
+                                                                LA DATE:</span>
+                                                            {{ Carbon\Carbon::parse($event->start)->format('F j-Y h:m') }}
                                                         </h5>
                                                     </td>
                                                 </tr>
-                                                {{-- <tr>
-                                                    <td vertical-align="middle"
-                                                        style="font-size:0px;padding:10px 25px;word-break:break-word;"
-                                                        align="right">
-                                                        <table role="presentation"
-                                                            style="border-collapse:separate;line-height:100%;"
-                                                            cellspacing="0" cellpadding="0" border="0">
-                                                            <tbody>
-                                                                <tr>
-                                                                    <td role="presentation"
-                                                                        style="border:none;border-radius:30px;cursor:auto;mso-padding-alt:10px 25px;background:#7A0B1F;"
-                                                                        valign="middle" bgcolor="#7A0B1F"
-                                                                        align="center">
-                                                                        <a href="https://google.com"
-                                                                            style="display: inline-block; background: #7A0B1F; color: #FFCDB0; font-family: Helvetica, Arial, sans-serif; font-size: 14px; font-weight: bold; line-height: 30px; margin: 0; text-decoration: none; text-transform: uppercase; padding: 10px 25px; mso-padding-alt: 0px; border-radius: 30px;"
-                                                                            target="_blank"> more details </a>
-                                                                    </td>
-                                                                </tr>
-                                                            </tbody>
-                                                        </table>
-                                                    </td>
-                                                </tr> --}}
                                             </tbody>
                                         </table>
                                     </div>

@@ -28,7 +28,6 @@
                 <div class="">
                     <form action="{{ route('admin.all.event') }}" class="flex space-x-10 justify-center items-center"
                         method="get">
-                        @csrf
                         <div class="grid grid-cols-1">
                             <select class=" ms shadow-md select2" aria-placeholder="Select" name="filter">
                                 @foreach ($users as $user)
@@ -38,6 +37,8 @@
                             </select>
                             <button name="filterButton" type="submit" class="btn btn-primary shadow-md">Filter</button>
                         </div>
+                        @csrf
+
                     </form>
                     <div>
                         @if ($current_user == 'all')
