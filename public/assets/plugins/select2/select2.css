@@ -33,7 +33,7 @@ Version: 3.5.3 Timestamp: Wed Aug 19 21:55:46 EDT 2015
     padding: 4px 4px 4px 4px;
     overflow: hidden;
     position: relative;
-    border: 1px solid #aaa;
+    /* border: 1px solid #aaa; */
     white-space: nowrap;
     line-height: 26px;
     color: #444;

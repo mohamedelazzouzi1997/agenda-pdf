@@ -28,13 +28,15 @@
                 <div class="">
                     <form action="{{ route('admin.all.event') }}" class="flex space-x-10 justify-center items-center"
                         method="get">
-                        <div class="grid grid-cols-1">
-                            <select class=" ms shadow-md select2" aria-placeholder="Select" name="filter">
-                                @foreach ($users as $user)
-                                    <option value="{{ $user->id }}">
-                                        {{ $user->name }}</option>
-                                @endforeach
-                            </select>
+                        <div class="grid grid-cols-1 gap-2">
+                            <div class="shadow-2xl border-2 border-gray-400 drop-shadow-lg rounded">
+                                <select class=" ms select2" aria-placeholder="Select" name="filter">
+                                    @foreach ($users as $user)
+                                        <option value="{{ $user->id }}">
+                                            {{ $user->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
                             <button name="filterButton" type="submit" class="btn btn-primary shadow-md">Filter</button>
                         </div>
                         @csrf
