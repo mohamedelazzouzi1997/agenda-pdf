@@ -162,7 +162,7 @@
                         cellspacing="0" cellpadding="0" border="0" align="center">
                         <tbody>
                             <tr>
-                                <td style="direction:ltr;font-size:0px;padding:20px 0;text-align:center;">
+                                <td style="direction:ltr;font-size:0px;padding:0px 0;text-align:center;">
                                     <div class="mj-column-per-100 mj-outlook-group-fix"
                                         style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
                                         <table role="presentation" style="vertical-align:top;" width="100%"
@@ -233,7 +233,7 @@
                         cellspacing="0" cellpadding="0" border="0" align="center">
                         <tbody>
                             <tr>
-                                <td style="direction:ltr;font-size:0px;padding:20px 0;text-align:center;">
+                                <td style="direction:ltr;font-size:0px;padding:0px 0;text-align:center;">
                                     <div class="mj-column-per-100 mj-outlook-group-fix"
                                         style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
                                         <table role="presentation" style="vertical-align:top;" width="100%"
