@@ -36,7 +36,7 @@ class EventNotifyCommande extends Command
        $Four_days_befor = Carbon::now()->addDays(4)->toDateString();
 
             $Users = User::with(['events'=> function($q) use($Four_days_befor,$Two_days_befor){
-                $q->whereIn('status', ['Valide','En attente'])
+                $q->whereIn('status', ['En attente'])
                 ->whereDate( 'start', $Two_days_befor)
                 ->orWhereDate( 'start', $Four_days_befor);
             }])->get();
