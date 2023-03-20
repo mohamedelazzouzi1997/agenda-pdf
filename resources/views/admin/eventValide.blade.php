@@ -31,6 +31,7 @@
                                     <th>description</th>
                                     <th>User</th>
                                     <th>Etat</th>
+                                    <th>Files</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -42,6 +43,13 @@
                                         <td>{{ Str::limit($event->description, 15) }}</td>
                                         <td>{{ $event->user->name }}</td>
                                         <td> <span class="badge badge-success uppercase">{{ $event->status }}</span></td>
+                                        <td>
+                                            @if ($event->file != 'no file')
+                                                <a class="btn btn-primary text-3xl" target="_blank"
+                                                    href="{{ asset('storage/' . $event->file) }}"><i
+                                                        class="zmdi zmdi-file-text text-white text-xl"></i></a>
+                                            @endif
+                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>

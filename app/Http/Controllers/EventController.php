@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 use App\Exports\EventsExport;
 use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\Storage;
 
 class EventController extends Controller
 {
@@ -46,6 +47,7 @@ class EventController extends Controller
                 'start' => $event->start,
                 'status' => $event->status,
                 'description' => $event->description,
+                'file' => $event->file,
                 'classNames' =>  $backgroundColor,
             ];
             array_push($eventArray,$data);
@@ -55,12 +57,25 @@ class EventController extends Controller
     }
 
     public function store(Request $request){
-        $event = Event::create([
-            'title' => $request->title,
-            'start' => $request->start,
-            'description' => $request->description,
-            'user_id' => auth()->user()->id,
-        ]);
+
+        if($request->has('file')){
+            $path = $request->file('file')->store('/public/files/pdf');
+            $storage = $request->file('file')->store('/files/pdf');
+            $event = Event::create([
+                'title' => $request->title,
+                'start' => $request->start,
+                'description' => $request->description,
+                'file' => $storage,
+                'user_id' => auth()->user()->id,
+            ]);
+        }else{
+            $event = Event::create([
+                'title' => $request->title,
+                'start' => $request->start,
+                'description' => $request->description,
+                'user_id' => auth()->user()->id,
+            ]);
+        }
         if($event){
             session()->flash('success','Notification a été ajouté avec succée');
             return to_route('dashboard');
@@ -71,10 +86,27 @@ class EventController extends Controller
 
     public function update(Request $request, $id){
         $event = Event::findOrFail($id);
-        $event->update([
-            'title' => $request->title,
-            'description' => $request->description,
-        ]);
+        if($request->has('file')){
+            $oldFile = $event->file;
+            if ($oldFile) {
+                Storage::delete($oldFile); // delete the old file from the disk
+                Storage::delete('public/'.$oldFile); // delete the old file from the disk
+            }
+
+            $path = $request->file('file')->store('/public/files/pdf');
+            $storage = $request->file('file')->store('/files/pdf');
+
+            $event->update([
+                'title' => $request->title,
+                'description' => $request->description,
+                'file' => $storage,
+            ]);
+        }else{
+            $event->update([
+                'title' => $request->title,
+                'description' => $request->description,
+            ]);
+        }
         if($event){
             session()->flash('success','Notification a été modifie avec succée');
             return to_route('dashboard');

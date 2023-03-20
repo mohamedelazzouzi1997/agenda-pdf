@@ -71,7 +71,7 @@
                                     <option disabled selected>select status</option>
                                     <option class="bg-warning" value="En attente">En attente</option>
                                     <option class="bg-teal-500" value="Valide">Validé</option>
-                                    <option class="bg-danger" value="Rejete">Rejeté</option>
+                                    {{-- <option class="bg-danger" value="Rejete">Rejeté</option> --}}
                                 </select>
                                 <button disabled id="editEventStatusButton" name="editEventStatusButton" type="submit"
                                     class="btn shadow-xl btn-primary w-1/2 waves-effect">
@@ -91,6 +91,7 @@
                                         <th>description</th>
                                         <th>User</th>
                                         <th>Etat</th>
+                                        <th>File</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -113,6 +114,13 @@
                                                     <span class="badge badge-success uppercase">{{ $event->status }}</span>
                                                 @else
                                                     <span class="badge badge-warning uppercase">{{ $event->status }}</span>
+                                                @endif
+                                            </td>
+                                            <td>
+                                                @if ($event->file != 'no file')
+                                                    <a class="btn btn-primary text-3xl" target="_blank"
+                                                        href="{{ asset('storage/' . $event->file) }}"><i
+                                                            class="zmdi zmdi-file-text text-white text-xl"></i></a>
                                                 @endif
                                             </td>
                                         </tr>

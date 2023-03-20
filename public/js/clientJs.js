@@ -21,6 +21,10 @@
             const calendar = new FullCalendar.Calendar(calendarEl, {
                 locale: 'fr', // change calendare to fr lang
                 initialView: 'timeGridWeek',
+                slotDuration: '00:10:00',
+                slotLabelInterval: '01:00',
+                slotMinTime: '09:00',
+                slotMaxTime: '18:00',
                 headerToolbar: {
                     left: 'prev,next today',
                     center: 'title',
@@ -33,7 +37,6 @@
                     startTime: '09:00', // a start time (10am in this example)
                     endTime: '18:00', // an end time (6pm in this example)
                 },
-                slotDuration: '01:00:00',
                 dayMaxEvents: 5, // for all non-TimeGrid views
                 buttonText: {
                     today: "Aujourd'hui",
@@ -80,11 +83,19 @@
                     const title = info.event.title;
                     const statusBgColor = info.event.classNames;
                     const description = info.event.extendedProps.description;
+                    const file = info.event.extendedProps.file.split('/');
+                    // console.log(file[3]);
                     const start = formattedDate;
                     const status = info.event.extendedProps.status;
                     const eventId = info.event.id;
 
                     $('#editEventTile').val(title);
+                    if (file[2]) {
+                        $('#fileEmbed').show();
+                        $('#fileEmbed').attr('href', '/storage/files/pdf/' + file[2]);
+                    } else {
+                        $('#fileEmbed').hide();
+                    }
                     $('#editeventDate').html(start);
                     $('#eventstatus').html(status);
                     if ($('#eventstatus').hasClass('has-bg')) {

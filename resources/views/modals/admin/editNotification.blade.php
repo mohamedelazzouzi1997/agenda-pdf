@@ -8,6 +8,13 @@
                 <span id="eventstatus" class="px-3 py-1 uppercase rounded-md text-white"></span>
             </div>
             <form id="editmyform" action="" method="post" class="form-group px-4 py-3">
+                <div class="">
+
+                    <a id="fileEmbed" target="_blank" href=""
+                        class="float-left hover:underline text-blue-900 hidden"><i
+                            class="zmdi text-xl zmdi-file-text"></i>
+                    </a>
+                </div>
                 @csrf
                 @method('put')
                 <div class="input-group masked-input mb-3 shdow-md">
@@ -26,7 +33,7 @@
                 </div>
                 <select name="status" id="editEventStatus" class="w-full border border-gray-100 rounded shadow-md">
                     <option class="text-warning" value="En attente">En attente</option>
-                    <option class="text-danger" value="Rejete">Rejete</option>
+                    {{-- <option class="text-danger" value="Rejete">Rejete</option> --}}
                     <option class="text-success" value="Valide">Valide</option>
                 </select>
                 <textarea class="form-control shadow-md mt-3" name="description" id="editEventDescription" cols="30" rows="5"

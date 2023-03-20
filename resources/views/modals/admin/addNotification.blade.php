@@ -19,6 +19,7 @@
                     </div>
                     <input id="eventDate" name="start" type="datetime-local" class="form-control datetime shadow-md">
                 </div>
+
                 {{-- <label for="description">Description</label> --}}
                 <textarea class="form-control shadow-md" name="description" id="" cols="30" rows="5"
                     placeholder="Description"></textarea>

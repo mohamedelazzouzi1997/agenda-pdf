@@ -51,6 +51,7 @@ class adminEventController extends Controller
                 'start' => $event->start,
                 'status' => $event->status,
                 'description' => $event->description,
+                'file' => $event->file,
                 'classNames' =>  $backgroundColor,
             ];
             array_push($eventArray,$data);

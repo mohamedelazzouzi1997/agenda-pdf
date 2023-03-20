@@ -7,7 +7,13 @@
             <div class="text-center mt-6">
                 <span id="eventstatus" class="px-3 py-1 uppercase rounded-md text-white"></span>
             </div>
-            <form id="editmyform" action="" method="post" class="form-group px-4 py-3">
+
+            <form id="editmyform" action="" method="post" class="form-group px-4 py-3"
+                enctype="multipart/form-data">
+                <a id="fileEmbed" target="_blank" href=""
+                    class="badge float-right badge-primary hover:underline text-blue-900 hidden">PDF <i
+                        class="zmdi text-xl zmdi-file-text"></i>
+                </a>
                 @csrf
                 @method('put')
                 <div class="input-group masked-input mb-3">
@@ -24,9 +30,15 @@
                     <p id="editeventDate" class="form-control datetime shadow-md">
                     </p>
                 </div>
-
+                <div class="input-group masked-input mb-3">
+                    <div class="input-group-prepend shadow-md">
+                        <span class="input-group-text"><i class="zmdi zmdi-file-text"></i></span>
+                    </div>
+                    <input id="evenFile" name="file" type="file" class="form-control shadow-md">
+                </div>
                 <textarea class="form-control shadow-md" name="description" id="editEventDescription" cols="30" rows="5"
                     placeholder="Description"></textarea>
+                s
             </form>
 
             <div class="modal-footer">

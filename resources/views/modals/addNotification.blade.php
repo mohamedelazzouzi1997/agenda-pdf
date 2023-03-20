@@ -4,7 +4,8 @@
             <div class="modal-header py-3 px-5 uppercase bg-teal-500 shadow-lg shadow-cyan-500/50">
                 <h4 class="title text-center font-extrabold" id="addNotification">Nouvelle Notificaton </h4>
             </div>
-            <form id="myform" action="{{ route('store.event') }}" method="post" class="form-group px-4 py-3">
+            <form id="myform" action="{{ route('store.event') }}" method="post" enctype="multipart/form-data"
+                class="form-group px-4 py-3">
                 @csrf
                 <div class="input-group masked-input mb-3">
                     <div class="input-group-prepend shadow-md">
@@ -18,6 +19,12 @@
                         <span class="input-group-text"><i class="zmdi zmdi-calendar-note"></i></span>
                     </div>
                     <input id="eventDate" name="start" type="datetime-local" class="form-control datetime shadow-md">
+                </div>
+                <div class="input-group masked-input mb-3">
+                    <div class="input-group-prepend shadow-md">
+                        <span class="input-group-text"><i class="zmdi zmdi-file-text"></i></span>
+                    </div>
+                    <input id="evenFile" name="file" type="file" class="form-control shadow-md">
                 </div>
                 {{-- <label for="description">Description</label> --}}
                 <textarea class="form-control shadow-md" name="description" id="" cols="30" rows="5"

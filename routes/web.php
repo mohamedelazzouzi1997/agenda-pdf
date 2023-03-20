@@ -38,13 +38,13 @@ Route::middleware(['auth'])->group(function () {
     // admin routes
         Route::group(['middleware'=> 'is_admin', 'as' => 'admin.'],function () {
             Route::post('/admin/event/store',[adminEventController::class,'store'])->name('store.event');
-            Route::get('/admin/agenda', [adminEventController::class,'indexDashboard'])->name('dashboard');
-            Route::get('/admin/getEvents',[adminEventController::class,'index'])->name('events');
+            Route::get('/adminAgenda', [adminEventController::class,'indexDashboard'])->name('dashboard');
+            Route::get('/admingetEvents',[adminEventController::class,'index'])->name('events');
             Route::put('/admin/event/drop/update/{id}',[adminEventController::class,'updateEventByDrop'])->name('events.drop.update');
-            Route::get('/admin/all/event',[adminEventController::class,'allEvent'])->name('all.event');
-            Route::get('/admin/valide/agenda/events',[adminEventController::class,'evendValide'])->name('valide.event');
+            Route::get('/adminAllevent',[adminEventController::class,'allEvent'])->name('all.event');
+            Route::get('/adminValideAgendaEvents',[adminEventController::class,'evendValide'])->name('valide.event');
             Route::put('/admin/event/update/{id}',[adminEventController::class,'update'])->name('update.event');
-            Route::delete('/admin/event/multiple/edit',[adminEventController::class,'multiplDeleteAndEditEvents'])->name('delete.multipl.event');
+            Route::delete('/admin/event/multiple/delete',[adminEventController::class,'multiplDeleteAndEditEvents'])->name('delete.multipl.event');
             Route::get('/admin/event/delete/{id}',[adminEventController::class,'delete'])->name('delete.event');
 
     });

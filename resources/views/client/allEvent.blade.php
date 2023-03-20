@@ -33,6 +33,7 @@
                                     <th>Title du tache</th>
                                     <th>description</th>
                                     <th>Etat</th>
+                                    <th>file</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -51,6 +52,14 @@
                                                 <span class="badge badge-warning uppercase">{{ $event->status }}</span>
                                             @endif
                                         </td>
+                                        <td>
+                                            @if ($event->file != 'no file')
+                                                <a class="btn btn-primary text-3xl" target="_blank"
+                                                    href="{{ asset('storage/' . $event->file) }}"><i
+                                                        class="zmdi zmdi-file-text text-white text-xl"></i></a>
+                                            @endif
+                                        </td>
+
                                     </tr>
                                 @endforeach
                             </tbody>

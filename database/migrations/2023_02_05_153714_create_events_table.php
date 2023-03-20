@@ -16,9 +16,10 @@ return new class extends Migration
         Schema::create('events', function (Blueprint $table) {
             $table->id();
             $table->string('title')->nullable();
-            $table->string('description')->nullable();
+            $table->text('description')->nullable()->default('no comment');
             $table->dateTime('start')->nullable();
             $table->string('status')->default('En attente');
+            $table->string('file')->default('no file');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
