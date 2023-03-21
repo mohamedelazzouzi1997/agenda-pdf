@@ -28,8 +28,8 @@
                     <input class="form-control  shadow-md" id="editeventDate" type="datetime-local" name="start">
 
                 </div>
-                <select name="status" id="editEventStatus" class="w-full border border-gray-100 rounded shadow-md">
-                    <option class="text-warning" value="En attente">En attente</option>
+                <select name="status" id="editEventStatus" class="w-full p-2 border border-gray-100 rounded shadow-md">
+                    <option class="text-danger" value="En attente">En attente</option>
                     {{-- <option class="text-danger" value="Rejete">Rejete</option> --}}
                     <option class="text-success" value="Valide">Valide</option>
                 </select>
@@ -44,10 +44,11 @@
                         <button id="deleteOneEventButton" class="btn btn-danger float-left shadow-md">Supprimé</butt>
                     </form>
                 </div>
-                <button form="editmyform" type="submit" class="btn btn-primary text-white waves-effect shadow-md">
+                <button form="editmyform" type="submit"
+                    class="btn bg-blue-900 hover:bg-blue-700 text-white waves-effect shadow-md">
                     Modifier
                 </button>
-                <button type="button" class="btn btn-muted text-white waves-effect shadow-md"
+                <button type="button" class="btn bg-slate-800 hover:bg-slate-700 text-white waves-effect shadow-md"
                     data-dismiss="modal">CLOSE</button>
             </div>
         </div>

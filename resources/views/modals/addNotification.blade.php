@@ -32,11 +32,11 @@
             </form>
             <div class="modal-footer">
                 <button form="myform" type="submit"
-                    class="px-6 py-2 bg-teal-500 rounded-lg shadow-xl hover:bg-teal-600 text-white waves-effect">
+                    class="px-6 py-1 bg-teal-500 rounded-lg shadow-xl hover:bg-teal-600 text-white waves-effect">
                     Enregistrer
                 </button>
                 <button type="button"
-                    class="px-6 py-2 bg-red-500 shadow-xl hover:bg-red-600 rounded-lg text-white waves-effect"
+                    class="px-6 py-1 bg-red-500 shadow-xl hover:bg-red-600 rounded-lg text-white waves-effect"
                     data-dismiss="modal">CLOSE</button>
             </div>
         </div>

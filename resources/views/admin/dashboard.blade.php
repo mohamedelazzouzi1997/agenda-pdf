@@ -31,7 +31,8 @@
                                 {{ $user->name }}</option>
                         @endforeach
                     </select>
-                    <button name="filterButton" type="submit" class="btn btn-primary shadow-md">Filter</button>
+                    <button name="filterButton" type="submit"
+                        class="btn bg-blue-900 hover:bg-blue-600 shadow-md">Filter</button>
                 </div>
             </form>
             <div>

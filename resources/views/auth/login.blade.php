@@ -7,7 +7,7 @@
                 @csrf
                 <div class="header">
                     <img class="logo mx-auto" src="{{ asset('assets/images/logo.svg') }}" alt="">
-                    <h5>Log in </h5>
+                    <h5>Log in <span class="text-danger">Agenda Gestion</span></h5>
 
                 </div>
                 <div class="body">

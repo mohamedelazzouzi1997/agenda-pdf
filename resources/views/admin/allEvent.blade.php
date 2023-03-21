@@ -37,7 +37,8 @@
                                     @endforeach
                                 </select>
                             </div>
-                            <button name="filterButton" type="submit" class="btn btn-primary shadow-md">Filter</button>
+                            <button name="filterButton" type="submit"
+                                class="btn bg-blue-900 hover:bg-blue-600 shadow-md">Filter</button>
                         </div>
                         @csrf
 
@@ -52,7 +53,8 @@
                 </div>
                 <div class="body shadow-2xl">
 
-                    <form id="allEventForm" action="{{ route('admin.delete.multipl.event') }}" method="post">
+                    <form id="allEventForm" autocomplete="off" action="{{ route('admin.delete.multipl.event') }}"
+                        method="post">
                         @csrf
                         @method('DELETE')
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-x-4 mb-3">
@@ -61,20 +63,20 @@
                                     class="px-3 py-2 bg-slate-900 shadow-xl hover:bg-slate-800 text-white rounded ">EXEL
                                 </a>
                                 <button disabled id="deleteEventButton" name="deleteEventButton" type="submit"
-                                    class="btn shadow-xl btn-danger waves-effect"><i class="zmdi zmdi-delete"></i>
+                                    class="btn shadow-xl bg-red-500 waves-effect"><i class="zmdi zmdi-delete"></i>
                                     Supprimé</button>
                             </div>
                             <div class="text-end flex justify-center items-center space-x-2">
 
-                                <select name="editEventStatusSelect" class="rounded ms shadow-md w-1/2"
+                                <select name="editEventStatusSelect" class="rounded px-2 py-2 ms shadow-md w-1/2"
                                     data-placeholder="Select">
                                     <option disabled selected>select status</option>
-                                    <option class="bg-warning" value="En attente">En attente</option>
+                                    <option class="bg-danger" value="En attente">En attente</option>
                                     <option class="bg-teal-500" value="Valide">Validé</option>
                                     {{-- <option class="bg-danger" value="Rejete">Rejeté</option> --}}
                                 </select>
                                 <button disabled id="editEventStatusButton" name="editEventStatusButton" type="submit"
-                                    class="btn shadow-xl btn-primary w-1/2 waves-effect">
+                                    class="btn shadow-xl bg-blue-500 w-1/2 waves-effect">
                                     Modifier</button>
                             </div>
                         </div>
@@ -113,12 +115,12 @@
                                                 @elseif ($event->status == 'Valide')
                                                     <span class="badge badge-success uppercase">{{ $event->status }}</span>
                                                 @else
-                                                    <span class="badge badge-warning uppercase">{{ $event->status }}</span>
+                                                    <span class="badge badge-danger uppercase">{{ $event->status }}</span>
                                                 @endif
                                             </td>
                                             <td>
                                                 @if ($event->file != 'no file')
-                                                    <a class="btn btn-primary text-3xl" target="_blank"
+                                                    <a class="btn btn-primary" target="_blank"
                                                         href="{{ asset('storage/' . $event->file) }}"><i
                                                             class="zmdi zmdi-file-text text-white text-xl"></i></a>
                                                 @endif

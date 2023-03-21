@@ -38,16 +38,15 @@
                 </div>
                 <textarea class="form-control shadow-md" name="description" id="editEventDescription" cols="30" rows="5"
                     placeholder="Description"></textarea>
-                s
             </form>
 
             <div class="modal-footer">
                 <button form="editmyform" type="submit"
-                    class="px-6 py-2 bg-teal-500 rounded-lg shadow-xl hover:bg-teal-600 text-white waves-effect">
+                    class="px-6 py-1 bg-teal-500 rounded-lg shadow-xl hover:bg-teal-600 text-white waves-effect">
                     Modifier
                 </button>
                 <button type="button"
-                    class="px-6 py-2 bg-red-500 shadow-xl hover:bg-red-600 rounded-lg text-white waves-effect"
+                    class="px-6 py-1 bg-red-500 shadow-xl hover:bg-red-600 rounded-lg text-white waves-effect"
                     data-dismiss="modal">CLOSE</button>
             </div>
         </div>

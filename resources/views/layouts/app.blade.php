@@ -11,9 +11,9 @@
     <meta name="description" content="@yield('meta_description', config('app.name'))">
     <meta name="author" content="@yield('meta_author', config('app.name'))">
 
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
     <link rel="stylesheet" href="{{ asset('assets/plugins/bootstrap/css/bootstrap.min.css') }}">
-
+    <script src="https://cdn.tailwindcss.com"></script>
     <!-- Custom Css -->
     <link rel="stylesheet" href="{{ asset('assets/css/style.min.css') }}">
     <link rel="stylesheet" href="{{ asset('toaster/toaster.css') }}">
